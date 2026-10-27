@@ -4,7 +4,7 @@
    assim, basta o tablet pegar rede uma vez para receber a versão nova, sem
    precisar instalar nada de novo. Os ícones e o manifesto continuam vindo do
    que está guardado, por serem fixos. */
-const CACHE = "aee-srm-v60";
+const CACHE = "aee-srm-v63";
 const ARQUIVOS = ["./","./index.html","./manifest.webmanifest",
                   "./logo-aee-192.png","./logo-aee-512.png"];
 

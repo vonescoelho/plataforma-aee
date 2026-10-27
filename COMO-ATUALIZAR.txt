@@ -1,12 +1,12 @@
 PLATAFORMA DE ATENDIMENTOS AEE
-Versão do aplicativo: v60
+Versão do aplicativo: v63
 
 ENDEREÇO NOVO
   https://vonescoelho.github.io/plataforma-aee/
 
-  O repositório antigo (Jogo-Edu-Seduc-CORI) passa a mostrar só um aviso com
-  o botão para abrir o endereço novo. Os aplicativos antigos instalados pelo
-  Chrome deixam de funcionar assim que pegam internet.
+  O repositório antigo (Jogo-Edu-Seduc-CORI) passa a mostrar só um aviso de
+  encerramento, sem indicar o endereço novo. Os aplicativos antigos instalados
+  pelo Chrome deixam de funcionar assim que pegam internet.
 
 OS REGISTROS NÃO SE PERDEM
   O endereço novo fica na mesma conta do GitHub (vonescoelho.github.io), e o
@@ -22,6 +22,31 @@ EM CADA TABLETE, UMA ÚNICA VEZ
   5. No menu do Chrome (três pontinhos), toque em "Instalar aplicativo".
   6. Confira se os estudantes e as fichas apareceram. Se não aparecerem,
      restaure a cópia de segurança pela Área do professor.
+
+O QUE MUDOU NA VERSÃO 63
+  - Voz gratuita no aplicativo do tablete (APK): todas as falas da plataforma
+    e dos jogos passam a usar o mecanismo de voz do próprio Android, sem custo.
+    A melhor voz em português instalada no tablete é escolhida sozinha; dá
+    para trocar em Ajustes > Voz.
+  - Reconhecimento de fala no APK: o "Falar e conferir" da Fala Que Eu Escuto,
+    o ditado da Roda de Sentir e o ditado das anotações passam a usar o
+    reconhecimento do próprio tablete (aplicativo Google).
+  - O APK se instala por cima do anterior; os registros continuam.
+
+O QUE MUDOU NA VERSÃO 62
+  - Fala Que Eu Escuto: entrada com as quatro atividades em cartões e o
+    botão "Trocar atividade", no mesmo desenho dos outros jogos.
+  - Jangada de Palavras: entrada com os 13 níveis em cartões; os níveis se
+    abrem conforme os pontos (cadeado nos que ainda faltam). Nas frases
+    curtas, figura e palavras maiores, ocupando a tela.
+
+O QUE MUDOU NA VERSÃO 61
+  - Atuação: novo nível, Grandes desafios, com 12 situações mais difíceis
+    (golpe no celular, entrevista de emprego, discriminação, ciúme no
+    namoro, briga na saída, pausa combinada no plano do AEE, entre outras).
+  - Área do professor sem as orientações que sobravam na tela.
+  - Vozes: duas vozes da ElevenLabs já vêm escolhidas (feminina e
+    masculina); o aplicativo do tablete pode vir com a chave instalada.
 
 O QUE MUDOU NA VERSÃO 60
 
