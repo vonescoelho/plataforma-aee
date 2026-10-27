@@ -1,0 +1,120 @@
+PLATAFORMA DE ATENDIMENTOS AEE
+Versão do aplicativo: v60
+
+ENDEREÇO NOVO
+  https://vonescoelho.github.io/plataforma-aee/
+
+  O repositório antigo (Jogo-Edu-Seduc-CORI) passa a mostrar só um aviso com
+  o botão para abrir o endereço novo. Os aplicativos antigos instalados pelo
+  Chrome deixam de funcionar assim que pegam internet.
+
+OS REGISTROS NÃO SE PERDEM
+  O endereço novo fica na mesma conta do GitHub (vonescoelho.github.io), e o
+  tablete guarda os registros por conta, não por repositório. Os atendimentos,
+  fichas e relatórios aparecem sozinhos no aplicativo novo.
+  Mesmo assim, faça a cópia de segurança pela Área do professor antes da troca.
+
+EM CADA TABLETE, UMA ÚNICA VEZ
+  1. Abra o aplicativo antigo com internet ligada e faça a cópia de segurança.
+  2. Segure o ícone do aplicativo antigo e escolha desinstalar.
+  3. Se houver um APK antigo instalado, desinstale também.
+  4. No Chrome, abra o endereço novo.
+  5. No menu do Chrome (três pontinhos), toque em "Instalar aplicativo".
+  6. Confira se os estudantes e as fichas apareceram. Se não aparecerem,
+     restaure a cópia de segurança pela Área do professor.
+
+O QUE MUDOU NA VERSÃO 60
+
+  Tela inicial
+  - Duas partes: a agenda de um lado e as Anotações do outro. Ao tocar,
+    abre o teclado; o microfone dita; o lápis no canto abre negrito,
+    letra maior e cores. As anotações entram na cópia de segurança.
+  - Próximo atendimento com o nome inteiro; turma e horário na mesma linha.
+  - Aviso com som 4 minutos antes de cada atendimento, com o nome do
+    estudante (com o aplicativo aberto).
+  - Ajustes só com o símbolo; os botões cabem numa linha com o tablete em pé.
+
+  Ajustes
+  - Menu ao lado, com ícones; no tablete em pé, faixa que desliza.
+  - Estudantes: "Estudante do AEE" e "Convidado, estudo de caso" lado a
+    lado; cartas de aniversário (9 por folha A4, nome deitado) que se
+    atualizam sozinhas e saem em PDF; botão "Treino em casa", que dá um
+    código ao estudante (sugerido pela Ficha de Observação para quem ainda
+    não lê frases com compreensão).
+  - Horário: recreio e almoço marcados como SRM Fechada.
+  - Voz: vozes humanas da ElevenLabs (chave e vozes guardadas só no
+    tablete), com [FEMININO] e [MASCULINO]; sem internet, a voz do tablete.
+  - Termos de uso em cartões, sem negrito.
+
+  Jogos
+  - Sólidos geométricos: a planificação na tela e os sólidos montados como
+    resposta, em tamanho grande e com medidas proporcionais. Sem teclado.
+  - Quebra-cabeça: quadro grande e respostas em botões. Sem teclado.
+  - Roda do Sentir: as perguntas mudam de lugar conforme a emoção e ocupam
+    toda a tela; opções mais curtas onde o sentido continua bom.
+  - "Comportamentos" passou a se chamar "Atuação": figuras grandes, leitura
+    da opção tocada e um novo nível, Situações delicadas, com 14 histórias
+    do caderno Eu Decido, Eu Comunico (Nível 2).
+  - Soroban redesenhado, com contas no formato das de verdade; Xadrez com
+    peças desenhadas no formato das peças reais; Atuação, Xadrez e Soroban
+    com cartões no mesmo desenho dos outros jogos.
+
+  Relatório de atendimento
+  - Atividades e detalhamento em tabelas, com uma linha de texto
+    justificado embaixo de cada atividade; números sem negrito.
+
+O QUE MUDOU NAS VERSÕES 58 E 59
+
+  Horário (Ajustes)
+  - Matriz: horários nas linhas, dias da semana nas colunas, todos com a
+    mesma largura. Cada casa é uma lista de escolha, com cor pelo tipo.
+  - Os tempos da escola, com recreio e almoço destacados.
+  - Estudante com o primeiro nome e as iniciais; turma sem a palavra "ano".
+  - PDF do horário semanal.
+
+  Jogos com o visual do aplicativo
+  - Fundo claro, bordas finas e sombras suaves em todos os jogos.
+  - Nenhuma explicação na tela: quem explica é o professor.
+  - Matemática: oito níveis, entre eles Porcentagem e juros, Perímetro e
+    área, Sólidos geométricos e Quebra-cabeça. Teclado no formato do teclado
+    numérico do computador, enunciado justificado, tudo numa tela só.
+  - Jangada de Palavras: figura menor e sem informação repetida.
+  - Desafios Sortidos: Achar no Mapa e Procurar e Achar com etapas mais
+    difíceis (caminho pelo mapa e figura virada para o outro lado).
+  - Roda do Sentir: roda sem nomes (o nome aparece em cima enquanto gira),
+    três estilos (colorida, espiral e fenaquistoscópio), tela cheia com
+    contagem de 60 até 1, Ajustes ao lado do Caderno e régua de 0 a 5.
+
+
+  Ficha de Observação Pedagógica
+  - Novo nome, no lugar de "Ficha de observação diagnóstica".
+  - Três partes: Estudo de Caso, Mapeamento das Barreiras e Identificação de
+    Potencialidades. As respostas já guardadas continuam no mesmo lugar.
+  - Dá para deixar pergunta sem resposta. Um contador mostra quantas faltam
+    e leva direto à próxima sem resposta.
+  - O PAEE montado automaticamente aproveita as barreiras e as potencialidades.
+
+  Abertura
+  - Depois de escolher o professor, o estudante é escolhido na mesma tela.
+  - Gamificação e Off-line ficam lado a lado, logo acima da lista.
+  - Cada estudante aparece com o primeiro nome, a turma e uma foto, que se
+    escolhe da galeria em Ajustes > Estudantes.
+  - A abertura não mostra mais o nome da escola: ela fica só nos documentos.
+  - Embaixo de todas as telas: SENOV Educacional. Na abertura, também o
+    atalho para os Termos de uso.
+
+  Telas mais limpas
+  - Os textos explicativos viraram um (?) que abre um balão por alguns segundos.
+  - Saíram os botões "Voltar": o Voltar do aparelho faz esse papel em todas
+    as telas.
+  - Termos de uso com texto justificado.
+
+  Jogos
+  - "Conta de Feira" passou a se chamar "Matemática".
+  - Saíram as teclas de orientação, os rodapés e as frases repetidas.
+  - Nos Desafios Sortidos, a dica fica num (?) e só aparece quando pedida.
+
+  Documentos em PDF
+  - Formais: texto em preto, sem cor.
+  - Saíram as mensagens explicativas do fim; o número do documento continua
+    no rodapé de cada página.
