@@ -1,5 +1,5 @@
 PLATAFORMA DE ATENDIMENTOS AEE
-Versão do aplicativo: v63
+Versão do aplicativo: v65
 
 ENDEREÇO NOVO
   https://vonescoelho.github.io/plataforma-aee/
@@ -22,6 +22,32 @@ EM CADA TABLETE, UMA ÚNICA VEZ
   5. No menu do Chrome (três pontinhos), toque em "Instalar aplicativo".
   6. Confira se os estudantes e as fichas apareceram. Se não aparecerem,
      restaure a cópia de segurança pela Área do professor.
+
+O QUE MUDOU NA VERSÃO 65
+  - "Cartas dos estudantes" passou a se chamar "Aniversariantes": em cada
+    carta, o primeiro nome numa linha, a data logo abaixo (ex.: 12 de setembro)
+    e a turma pequena num canto, pronta para o mural.
+  - Ajustes > Estudantes: cada estudante num cartão com a foto (tocar troca),
+    nome, turma, sexo, nascimento e idade; Treino em casa e Convidado viram
+    botões de liga e desliga; apagar pede um segundo toque.
+
+O QUE MUDOU NA VERSÃO 64
+  - Documentos: a identificação (estudante, turma, professor, data, horário,
+    número do documento) passa a sair num quadro formal, com "Rótulo: valor",
+    igual em todos os documentos.
+  - Cabeçalho dos documentos centralizado, sem a linha da Sala de Recursos.
+    O nome da escola sai sempre numa linha; se for longo, os nomes são
+    abreviados a partir do penúltimo.
+  - Instituição: o registro (INEP, CNPJ) pode ser mostrado ou não nos documentos.
+  - Balões (?) com o texto justificado.
+  - Tela inicial em pé: botões dentro do quadro e anotações mais baixas.
+  - Foto do estudante: aparece também no perfil da Área do professor (tocar na
+    foto troca); se a memória estiver cheia, o aplicativo libera espaço nas
+    fotos de atendimentos antigos ou avisa que não guardou.
+  - Área do professor: explicações dos cartões no (?); o termo em branco fica
+    no cartão do Termo de autorização; nomes mais curtos (Observação
+    Pedagógica, Observação: TEA, Avanços PAEE, Relatórios AEE).
+  - Cópia de segurança aparece uma só vez, ao lado de Restaurar.
 
 O QUE MUDOU NA VERSÃO 63
   - Voz gratuita no aplicativo do tablete (APK): todas as falas da plataforma

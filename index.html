@@ -368,7 +368,9 @@ table.ativ tr td:first-child{font-weight:700;border-left:5px solid var(--c,#0F7A
 .pvCab{display:flex;gap:12px;align-items:center;border-bottom:2px solid var(--mar);padding-bottom:9px}
 .pvCab img{height:52px;max-width:125px;object-fit:contain;flex:none}
 .pvCab small{display:block;font-family:Helvetica,Arial,sans-serif;font-size:.64rem;color:#4A6874;letter-spacing:.03em}
-.pvCab b{display:block;font-family:Helvetica,Arial,sans-serif;font-size:1rem;line-height:1.2}
+.pvCab b{display:block;font-family:Helvetica,Arial,sans-serif;font-size:1rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pvCab>div{flex:1;text-align:center}
+.pvCab:has(img)::after{content:"";flex:none;width:52px}
 .pvRod{margin-top:10px;border-top:1px solid #ccc;padding-top:5px;text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:.62rem;color:#7a8488}
 .itemLista .emUso{color:var(--verde-fundo);font-weight:800}
 .itemLista .acoes{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
@@ -417,6 +419,10 @@ table.ativ tr td:first-child{font-weight:700;border-left:5px solid var(--c,#0F7A
 .apDocs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px}
 .apQuem{font-family:var(--disp);font-weight:800;font-size:1.12rem;margin:0 0 10px}
 .apQuem span{font-family:system-ui,sans-serif;font-weight:600;font-size:.84rem;color:var(--tinta-suave)}
+.apQuem{display:flex;align-items:center;gap:12px}
+.apQuem .apQuemTx{font:inherit;color:inherit}
+.apFoto{padding:0;border:0;background:none;cursor:pointer;border-radius:50%;flex:none}
+.apFoto .avatar{width:58px;height:58px;color:#fff;font-family:var(--disp);font-weight:800;font-size:1.1rem;box-shadow:0 0 0 2px var(--vela),0 0 0 3.5px var(--linha)}
 .cartaoDoc{--c:var(--mar);display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:0;
   overflow:hidden;cursor:pointer;background:var(--vela);border:1.5px solid var(--linha);border-radius:var(--raio);
   box-shadow:var(--sombra);color:var(--tinta);font-family:var(--disp);touch-action:manipulation}
@@ -427,8 +433,13 @@ table.ativ tr td:first-child{font-weight:700;border-left:5px solid var(--c,#0F7A
 .cartaoDoc .topo .ic{font-size:1.45rem;line-height:1;background:var(--vela);border:1.5px solid var(--linha);
   border-radius:11px;width:42px;height:42px;display:grid;place-items:center;flex:none}
 .cartaoDoc .topo b{font-size:1.08rem;line-height:1.15}
-.cartaoDoc .corpo{padding:11px 14px 8px;font-family:system-ui,sans-serif;font-size:.84rem;line-height:1.45;
-  color:var(--tinta-suave);flex:1}
+.cartaoDoc{position:relative}
+.cartaoDoc .topo{flex:1}
+.cartaoDoc .topo .q{margin-left:auto;flex:none}
+.cartaoDoc .pe{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 12px 12px}
+.cartaoDoc .pe .st{margin:0}
+.cartaoDoc .emBranco{font-weight:800;font-size:.76rem;padding:4px 11px;border-radius:99px;border:1.5px solid var(--tinta);
+  background:var(--vela);color:var(--tinta);line-height:1.35}
 .cartaoDoc .st{margin:4px 14px 13px;align-self:flex-start;font-weight:700;font-size:.76rem;padding:3px 10px;
   border-radius:99px;border:1px solid var(--linha);color:var(--tinta-suave);background:var(--vela)}
 .cartaoDoc .st.rasc{background:var(--caju-claro);border-color:var(--caju);color:var(--caju-fundo)}
@@ -509,7 +520,7 @@ textarea:focus-visible,input[type=date]:focus-visible,input[type=password]:focus
 .temQ > .q.canto ~ .rotulo:first-of-type,.temQ > .q.canto + .rotulo{padding-right:34px}
 .barraSessao.temQ .q.canto,.escola.temQ .q.canto{top:50%;transform:translateY(-50%);right:12px}
 #balaoQ{position:fixed;z-index:200;display:none;background:var(--tinta);color:#fff;border-radius:14px;padding:12px 15px;
-  font:500 .9rem/1.5 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);text-align:left}
+  font:500 .9rem/1.5 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 #balaoQ.on{display:block;animation:balaoEntra .18s ease}
 #balaoQ.atencao{background:var(--caju-fundo)}
 @keyframes balaoEntra{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
@@ -743,10 +754,9 @@ textarea.apLongo{min-height:170px;line-height:1.6}
 .carta{position:relative;border:1.5px solid #555;border-radius:9px;box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 5px #999;display:grid;place-items:center;container-type:size;min-width:0;min-height:0}
 .cartaMeio{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;writing-mode:vertical-rl;transform:rotate(180deg);max-height:66cqh}
 .cartaMeio b{font:800 min(34cqw,calc(118cqh / var(--n,6)))/1 var(--disp);color:#111;white-space:nowrap}
-.cartaMeio span{font:700 min(17cqw,calc(100cqh / 5))/1 var(--disp);color:#333;white-space:nowrap}
-.cartaCanto{position:absolute;top:5%;left:8%;display:flex;flex-direction:column;align-items:center;font:700 7cqw/1 var(--disp);color:#444}
-.cartaCanto b{font:800 13cqw/1 var(--disp);color:#111}
-.cartaCanto.baixo{top:auto;left:auto;bottom:5%;right:8%}
+.cartaMeio{gap:6cqw}
+.cartaMeio span{font:700 min(14cqw,9cqh)/1 var(--disp);color:#222;white-space:nowrap}
+.cartaTurma{position:absolute;left:9%;bottom:6%;writing-mode:vertical-rl;transform:rotate(180deg);font:700 8cqw/1 var(--disp);color:#555;white-space:nowrap}
 
 /* ===== tela inicial em duas partes: agenda à esquerda, anotações à direita ===== */
 .capaDupla{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
@@ -796,6 +806,15 @@ textarea.apLongo{min-height:170px;line-height:1.6}
 .linhaCapa .btn{white-space:nowrap;flex:1 1 auto;justify-content:center}
 .linhaCapa .btn.soIcone{flex:0 0 auto;min-width:52px;font-size:1.25rem;padding-left:14px;padding-right:14px}
 @media (max-width:620px){ .linhaCapa{flex-wrap:wrap} }
+/* tablet em pé: os quatro botões em grade, cada um dentro da sua coluna, sem passar da borda do quadro */
+@media (min-width:621px) and (max-width:1023px) and (orientation:portrait){
+  .linhaCapa{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:8px}
+  .linhaCapa .btn{min-width:0;padding:11px 8px;font-size:clamp(.84rem,2.05vw,.98rem);gap:6px;overflow:hidden;text-overflow:ellipsis}
+  .linhaCapa .btn.soIcone{min-width:50px;padding-left:12px;padding-right:12px}
+  .linhaCapa #bInstalar{grid-column:1/-1}
+  .anot{min-height:0;padding:12px 16px 14px}
+  .anotTexto{min-height:calc(1.6em * 3);max-height:calc(1.6em * 5);overflow-y:auto;padding-bottom:6px}
+}
 
 /* ===== Ajustes: menu ao lado, título em cada aba, conteúdo em blocos ===== */
 #abasCfg button{display:inline-flex;align-items:center;gap:8px}
@@ -848,6 +867,27 @@ textarea.apLongo{min-height:170px;line-height:1.6}
 .codigoCasa b{font-size:1.4rem;letter-spacing:.14em;color:var(--tinta);font-variant-numeric:tabular-nums}
 .btn.casaOn{border-color:var(--mar);color:var(--mar-fundo);letter-spacing:.06em}
 .sugCasa{color:var(--mar-fundo);font-weight:700}
+/* estudantes em Ajustes: cartão com foto, nome, dados e chaves de liga e desliga */
+#listaAlunosCfg{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:1000px){ #listaAlunosCfg{grid-template-columns:1fr 1fr} }
+.estCard{position:relative;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"foto info" "foto acoes";column-gap:14px;row-gap:8px;
+  align-items:center;padding:12px 44px 12px 12px;background:var(--vela);border:1.5px solid var(--linha);border-radius:16px;box-shadow:0 1px 2px rgba(21,48,58,.05)}
+.estCard.conv{border-left:5px solid var(--roxo)}
+.estFoto{grid-area:foto;position:relative;padding:0;border:0;background:none;cursor:pointer;border-radius:50%;align-self:center}
+.estFoto .avatar{width:64px;height:64px;color:#fff;font-family:var(--disp);font-weight:800;font-size:1.15rem}
+.estCam{position:absolute;right:-2px;bottom:-2px;width:24px;height:24px;border-radius:50%;background:var(--vela);border:1.5px solid var(--linha);
+  display:grid;place-items:center;font-size:.72rem}
+.estInfo{grid-area:info;display:flex;flex-direction:column;gap:2px;min-width:0}
+.estInfo b{font:800 1.04rem/1.2 var(--disp);color:var(--tinta)}
+.estMeta{font:600 .8rem/1.35 system-ui,sans-serif;color:var(--tinta-suave)}
+.estAcoes{grid-area:acoes;display:flex;flex-wrap:wrap;gap:6px}
+.estBt{font:700 .8rem/1 var(--disp);padding:8px 12px;min-height:36px;border-radius:99px;border:1.5px solid var(--linha);background:var(--areia);
+  color:var(--tinta);cursor:pointer;touch-action:manipulation}
+.estBt.on.casa{background:var(--verde-claro);border-color:var(--verde);color:var(--verde-fundo)}
+.estBt.on.roxo{background:var(--roxo-claro);border-color:var(--roxo);color:var(--roxo-fundo)}
+.estX{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--linha);
+  background:var(--vela);color:var(--tinta-suave);font:700 .85rem/1 system-ui,sans-serif;cursor:pointer;display:grid;place-items:center;padding:0}
+.estX[data-conf="1"]{background:#FBE3E1;border-color:#C0392B;color:#9B2C22}
 
 /* busca do estudante com o + no fim da barra */
 .buscaMais{position:relative}
@@ -1109,6 +1149,10 @@ textarea.apLongo{min-height:170px;line-height:1.6}
         <input type="text" id="instOrgao" placeholder="ex.: Secretaria Municipal da Educação" autocomplete="off">
         <label class="campo" for="instCod">INEP, CNPJ ou outro registro (opcional)</label>
         <input type="text" id="instCod" placeholder="ex.: INEP 00000000" autocomplete="off">
+        <div class="apChips ladoALado" id="instCodVer" style="margin-top:6px">
+          <button type="button" class="chip on" data-v="1">Mostrar o registro nos documentos</button>
+          <button type="button" class="chip" data-v="">Não mostrar</button>
+        </div>
         <label class="campo" for="instEnd">Endereço (opcional)</label>
         <input type="text" id="instEnd" placeholder="rua, número e bairro" autocomplete="off">
         <label class="campo" for="instCid">Cidade e estado (opcional)</label>
@@ -1181,9 +1225,10 @@ textarea.apLongo{min-height:170px;line-height:1.6}
         <div><label class="campo" for="nascAluno">Nascimento</label><input type="date" id="nascAluno"></div>
         <button class="btn verde" id="bAddAluno">＋ Cadastrar</button>
       </div>
+      <div class="erroCampo" id="erroFotoEst"></div>
       <div id="listaAlunosCfg" style="margin-top:14px"></div>
       <div class="cartasBloco" id="cartasBloco">
-        <div class="linha cartasTopo"><h3>Cartas dos estudantes</h3><button class="btn" id="bCartasPdf">📄 Baixar em PDF</button></div>
+        <div class="linha cartasTopo"><h3>Aniversariantes</h3><button class="btn" id="bCartasPdf">📄 Baixar em PDF</button></div>
         <div class="cartasFolhas" id="cartasPrev"></div>
       </div>
     </div>
@@ -1340,18 +1385,12 @@ textarea.apLongo{min-height:170px;line-height:1.6}
     <div class="fichas apLista" id="apAlunos" style="margin-top:10px"></div>
   </div>
   <div id="apDocs"></div>
-  <div class="caixa" style="margin-top:14px" id="apBrancoBox">
-    <div class="rotulo" style="margin-top:0">Documento em branco</div>
-    <p class="apTxt">Para imprimir e deixar na pasta: o termo de autorização sem preenchimento, que a família assina à mão.</p>
-    <div class="linha"><button class="btn" id="apTermoBranco">📄 Termo de autorização em branco</button></div>
-  </div>
   <div class="caixa" style="margin-top:14px" id="apCopiaBox">
-    <div class="rotulo" style="margin-top:0">☁️ Cópia de segurança</div>
     <p class="apTxt">Guarda num só arquivo tudo o que está neste tablet: cadastro, fichas (rascunhos e concluídas)
       e atendimentos dos jogos. Envie para o seu Drive: se o tablet der problema, é só restaurar em outro aparelho.</p>
     <p class="apUltima" id="apUltima"></p>
     <div class="linha">
-      <button class="btn mar" id="apCopia">☁️ Fazer a cópia agora</button>
+      <button class="btn mar" id="apCopia">☁️ Fazer a cópia de segurança</button>
       <button class="btn" id="apRestaurar">📥 Restaurar uma cópia</button>
       <input type="file" id="apArquivo" accept=".txt,.json,text/plain,application/json" style="display:none">
     </div>
@@ -1921,7 +1960,7 @@ const PDF = (()=>{
 
   /* larguras reais do Helvetica (em milésimos de em) para as letras mais usadas.
      Com isso a quebra de linha fica justa, sem sobra nem corte. */
-  const L_NORMAL={" ":278,"!":278,'"':355,"#":556,"$":556,"%":889,"&":667,"'":191,"(":333,")":333,
+  const L_NORMAL={"º":365,"ª":370," ":278,"!":278,'"':355,"#":556,"$":556,"%":889,"&":667,"'":191,"(":333,")":333,
     "*":389,"+":584,",":278,"-":333,".":278,"/":278,"0":556,"1":556,"2":556,"3":556,"4":556,"5":556,
     "6":556,"7":556,"8":556,"9":556,":":278,";":278,"<":584,"=":584,">":584,"?":556,"@":1015,
     "A":667,"B":667,"C":722,"D":722,"E":667,"F":611,"G":778,"H":722,"I":278,"J":500,"K":667,"L":556,
@@ -1930,7 +1969,7 @@ const PDF = (()=>{
     "a":556,"b":556,"c":500,"d":556,"e":556,"f":278,"g":556,"h":556,"i":222,"j":222,"k":500,"l":222,
     "m":833,"n":556,"o":556,"p":556,"q":556,"r":333,"s":500,"t":278,"u":556,"v":500,"w":722,"x":500,
     "y":500,"z":500,"{":334,"|":260,"}":334,"~":584};
-  const L_NEGRITO={" ":278,"!":333,'"':474,"#":556,"$":556,"%":889,"&":722,"'":238,"(":333,")":333,
+  const L_NEGRITO={"º":365,"ª":370," ":278,"!":333,'"':474,"#":556,"$":556,"%":889,"&":722,"'":238,"(":333,")":333,
     "*":389,"+":584,",":278,"-":333,".":278,"/":278,"0":556,"1":556,"2":556,"3":556,"4":556,"5":556,
     "6":556,"7":556,"8":556,"9":556,":":333,";":333,"<":584,"=":584,">":584,"?":611,"@":975,
     "A":722,"B":722,"C":722,"D":722,"E":667,"F":611,"G":778,"H":722,"I":278,"J":556,"K":722,"L":611,
@@ -2294,6 +2333,31 @@ const PDF = (()=>{
         return api;
       },
 
+      /* quadro de identificação: cada célula traz "Rótulo: valor" (rótulo em negrito, valor
+         logo em seguida); linhas = [[ [rótulo, valor, fração da largura], ... ], ...] */
+      ficha(linhas,{tam=9.5,padV=4.6,padH=6,depois=8}={}){
+        linhas.forEach(cels=>{
+          const ws=[]; let soma=0;
+          cels.forEach((c,i)=>{ const w = i===cels.length-1 ? UT-soma : Math.round(UT*(c[2]||1/cels.length)*10)/10; ws.push(w); soma+=w; });
+          const blocos=cels.map((c,i)=>{
+            const rot=limpar(String(c[0]))+":", val=limpar(String(c[1]==null||c[1]===""? "—" : c[1]));
+            const lr=largura(rot+" ",tam,true), max=ws[i]-padH*2;
+            return {rot, lr, linhas: quebrar(val,tam,false,max,Math.min(lr,max*.6))};
+          });
+          const nl=Math.max(1,...blocos.map(b=>b.linhas.length)), alt=nl*tam*1.3+padV*2;
+          espaco(alt);
+          let x=MARGEM;
+          blocos.forEach((b,i)=>{
+            ops.push(".55 .55 .55 RG .5 w "+x.toFixed(1)+" "+y.toFixed(1)+" "+ws[i].toFixed(1)+" "+alt.toFixed(1)+" re S");
+            const y0=y+alt-padV-tam*1.02;
+            escreve(b.rot, x+padH, y0, tam, true, [0,0,0]);
+            b.linhas.forEach((l,k)=>escreve(l, x+padH+(k? 0 : Math.min(b.lr,(ws[i]-padH*2)*.6)), y0-k*tam*1.3, tam, false, [0,0,0]));
+            x+=ws[i];
+          });
+        });
+        y-=depois; return api;
+      },
+
       /* linhas de assinatura lado a lado, com o nome (opcional) e o rótulo embaixo */
       assinaturas(rotulos,{cor=[.29,.41,.45],tam=8,nomes=null,corNome=[.086,.196,.235]}={}){
         const n=rotulos.length, vao=28, w=(UT-vao*(n-1))/n;
@@ -2326,8 +2390,6 @@ const PDF = (()=>{
             yy-=10;
           }
           if(!comRodape) return;
-          /* "Sala de Recursos Multifuncionais · Atendimento Educacional Especializado" já vem
-             no cabeçalho de todo documento: repeti-la aqui só tirava espaço do rodapé. */
           const num=(seloTxt? limpar(seloTxt)+"   ·   " : "")+"Página "+(i+1)+" de "+nPag;
           const px=Wp-MARGEM-largura(limpar(num),7.5,false);
           pg.push("BT /F1 7.5 Tf "+cinza.join(" ")+" rg "+px.toFixed(1)+" "+yy+" Td ("+escapar(limpar(num))+") Tj ET");
@@ -2615,38 +2677,54 @@ function listaInst(){ return Array.isArray(cfg.instituicoes)? cfg.instituicoes :
 function instAtual(){ const L=listaInst(); return L.find(x=>x.id===cfg.instAtual) || L[0] || null; }
 function instDe(id){ return (id && listaInst().find(x=>x.id===id)) || instAtual(); }
 function contatosInst(i){ return i ? [i.endereco, i.cidade, i.contato].map(x=>String(x||"").trim()).filter(Boolean).join(" · ") : ""; }
-/* bloco do alto dos documentos: logotipo, órgão, nome, registro e (se srm) a linha da Sala de Recursos */
-function cabecalhoInst(d, inst, {srm=true}={}){
-  const TINTA=[.086,.196,.235], CINZA=[.29,.41,.45], MAR=[.145,.290,.335];
-  const SRM="Sala de Recursos Multifuncionais · Atendimento Educacional Especializado";
-  if(!inst){
-    if(!srm) return;
-    d.texto("SALA DE RECURSOS MULTIFUNCIONAIS",{tam:12.5,negrito:true,cor:TINTA,depois:1});
-    d.texto("Atendimento Educacional Especializado",{tam:8.6,cor:CINZA,depois:6});
-    d.regua(MAR,1.6); d.pular(6); return;
+/* o nome da escola sai sempre numa linha só: se não couber, abrevia os nomes de
+   trás para a frente, a partir do penúltimo (o último fica inteiro), sem mexer nas
+   ligações (de, da, do…); se ainda assim não couber, diminui um pouco a letra */
+function nomeNumaLinha(d, nome, larg, tam){
+  const LIGA=/^(de|da|do|das|dos|e|em|na|no)$/i;
+  const p=String(nome||"").replace(/\s+/g," ").trim().split(" ");
+  const cabe=()=>d.medir(p.join(" "), tam, true) <= larg;
+  for(let k=p.length-2; k>=0 && !cabe(); k--){
+    if(LIGA.test(p[k]) || /\.$/.test(p[k]) || p[k].length<=2 || /^\d/.test(p[k])) continue;
+    p[k]=p[k].charAt(0).toUpperCase()+".";
   }
+  const txt=p.join(" "), w=d.medir(txt, tam, true);
+  return {txt, tam: w>larg ? Math.max(8, tam*larg/w) : tam};
+}
+/* bloco do alto dos documentos: logotipo, órgão, nome e registro, centralizados */
+function cabecalhoInst(d, inst){
+  const TINTA=[.086,.196,.235], CINZA=[.29,.41,.45], MAR=[.145,.290,.335];
+  if(!inst) return;
+  /* texto centralizado na página; com logotipo, ele fica à esquerda e o mesmo
+     espaço é reservado do lado direito, para o centro do texto não sair do meio */
   const topo=d.y, H=48; let x=PDF.MARGEM, larg=d.util;
   const lg=inst.logo;
   if(lg && lg.src && lg.w && lg.h){
     const w=Math.min(120, H*lg.w/lg.h), h=w*lg.h/lg.w;
-    d.imagem(lg.src, lg.w, lg.h, x, topo-(H-h)/2, w, h); x+=w+12; larg-=w+12;
+    d.imagem(lg.src, lg.w, lg.h, x, topo-(H-h)/2, w, h); x+=w+12; larg-=(w+12)*2;
   }
-  const linhas=(inst.orgao?1:0)+1+(inst.codigos?1:0)+(srm?1:0);
-  if(lg && lg.src) d.irPara(topo-Math.max(0,(H-linhas*12.2)/2)+2);
-  if(inst.orgao) d.texto(String(inst.orgao).toUpperCase(),{tam:7.4,cor:CINZA,x,larg,depois:1});
-  d.texto(inst.nome,{tam:12.5,negrito:true,cor:TINTA,x,larg,depois:1});
-  if(inst.codigos) d.texto(inst.codigos,{tam:7.8,cor:CINZA,x,larg,depois:1});
-  if(srm) d.texto(SRM,{tam:8.2,cor:CINZA,x,larg,depois:1});
+  const verCod = !!inst.codigos && inst.mostrarCodigos!==false;
+  const linhas=(inst.orgao?1:0)+1+(verCod?1:0);
+  if(lg && lg.src) d.irPara(topo-Math.max(0,(H-linhas*13)/2)+2);
+  const c={x,larg,alinha:"c",depois:1};
+  if(inst.orgao) d.texto(String(inst.orgao).toUpperCase(),Object.assign({tam:7.4,cor:CINZA},c));
+  const N=nomeNumaLinha(d, inst.nome, larg, 12.5);
+  d.texto(N.txt,Object.assign({tam:N.tam,negrito:true,cor:TINTA},c));
+  if(verCod) d.texto(inst.codigos,Object.assign({tam:7.8,cor:CINZA},c));
   if(lg && lg.src && d.y>topo-H) d.irPara(topo-H);
   d.pular(4); d.regua(MAR,1.6); d.pular(6);
 }
 function salvar(){
-  try{ localStorage.setItem("aee_cfg",JSON.stringify(cfg)); }catch(e){}
+  const txt=JSON.stringify(cfg); let ok=false;
+  try{ localStorage.setItem("aee_cfg",txt); ok=true; }catch(e){}
   gravarSessoes();
+  /* memória cheia: tira as fotos dos atendimentos mais antigos e tenta guardar de novo */
+  if(!ok){ gravarSessoes([1,0]); try{ localStorage.setItem("aee_cfg",txt); ok=true; }catch(e){} }
+  return ok;
 }
 /* as fotos pesam: ficam guardadas só nos atendimentos mais recentes */
-function gravarSessoes(){
-  for(const corte of [4,2,1,0]){
+function gravarSessoes(cortes){
+  for(const corte of (cortes||[4,2,1,0])){
     let n=0;
     const lista=sessoes.slice(0,80).map(s=>{
       if(s.fotos && s.fotos.length){ n++;
@@ -2932,10 +3010,7 @@ function gerarFolhaMes(ano, mes){
   d.texto("Registro diário de atividades",{tam:16,negrito:true,cor:TINTA,depois:2});
   d.texto(MES[mes].charAt(0).toUpperCase()+MES[mes].slice(1)+" de "+ano,{tam:9.5,cor:CINZA,depois:10});
   const meia=U/2;
-  d.painel(()=>{
-    d.linhaTab(["PROFESSOR(A) DO AEE","MÊS"],[meia*1.4,meia*.6],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-    d.linhaTab([nomeBonito(profEscolhido)||"—", MES[mes]+"/"+ano],[meia*1.4,meia*.6],{tam:10.5,negrito:true,cor:TINTA,padV:1});
-  },{fundo:CLARO,pad:9});
+  d.ficha([[ ["Professor(a) do AEE", nomeBonito(profEscolhido), .6], ["Mês", MES[mes]+" de "+ano, .4] ]]);
 
   const hhmm=n=>String(n).padStart(2,"0");
   const ultimo=new Date(ano, mes+1, 0).getDate(), hoje=new Date();
@@ -3696,10 +3771,7 @@ function gerarFolhaAtividade(est, ativ, iso, soRespostas){
                   : "Atividade do Atendimento Educacional Especializado",
           {tam:14,negrito:true,cor:TINTA,depois:9});
   const c=[U*.46,U*.26,U*.28];
-  d.painel(()=>{
-    d.linhaTab(["ESTUDANTE","TURMA","DATA"],c,{tam:7.2,negrito:true,cor:CINZA,padV:1});
-    d.linhaTab([nomeBonito(est.nome), est.turma||"", dataBRdia(iso)],c,{tam:11,negrito:true,cor:TINTA,padV:1});
-  },{fundo:CLARO,pad:9});
+  d.ficha([[ ["Estudante", nomeBonito(est.nome), .46], ["Turma", est.turma, .26], ["Data", dataBRdia(iso), .28] ]]);
   d.pular(7);
   d.texto(ativ.nome,{tam:13,negrito:true,cor:TINTA,depois:2});
   d.texto(N.rot+"  ·  "+ativ.area+"  ·  "+ativ.hab,{tam:8,negrito:true,cor:CINZA,depois:8});
@@ -4195,6 +4267,14 @@ function nomeBonito(t){
   }).join(" ");
 }
 
+/* identificação dos dois relatórios de atendimento: as mesmas linhas, na mesma ordem */
+function fichaAtendimento(s, duracao, codigo){
+  return [
+    [ ["Estudante", nomeBonito(s.estudante), .6], ["Turma", s.turma, .4] ],
+    [ ["Professor(a) do AEE", nomeBonito(s.orientador), .6], ["Data", dataBR(s.inicio), .4] ],
+    [ ["Horário", horaBR(s.inicio)+" às "+horaBR(s.fim), .32], ["Duração", duracao, .28], ["Documento nº", codigo, .4] ]
+  ];
+}
 /* relatório do atendimento sem o tablet: atividades, participação, observações e fotos */
 function gerarPdfSemTablet(s){
   const TINTA=[.086,.196,.235], CINZA=[.29,.41,.45], MAR=[.145,.290,.335],
@@ -4208,18 +4288,7 @@ function gerarPdfSemTablet(s){
   d.texto("Atendimento realizado com atividades pedagógicas, sem o uso do tablet.",{tam:8.6,cor:CINZA,depois:10});
 
   const meia=U/2;
-  d.painel(()=>{
-    d.linhaTab(["ESTUDANTE","TURMA"],[meia,meia],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-    d.linhaTab([nomeBonito(s.estudante),s.turma],[meia,meia],{tam:11,negrito:true,cor:TINTA,padV:1});
-    d.pular(5);
-    d.linhaTab(["PROFESSOR(A)","DATA","HORÁRIO","DURAÇÃO"],[meia,meia*.40,meia*.34,meia*.26],
-      {tam:7.2,negrito:true,cor:CINZA,padV:1});
-    d.linhaTab([nomeBonito(s.orientador),dataBR(s.inicio),horaBR(s.inicio)+" às "+horaBR(s.fim),Math.round((s.fim-s.inicio)/60000)+" min"],
-      [meia,meia*.40,meia*.34,meia*.26],{tam:9.5,cor:TINTA,padV:1});
-    d.pular(5);
-    d.linhaTab(["DOCUMENTO Nº"],[U],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-    d.linhaTab([CODIGO],[U],{tam:10.5,negrito:true,cor:MAR,padV:1});
-  },{fundo:CLARO,pad:9});
+  d.ficha(fichaAtendimento(s, Math.max(1, Math.round((s.fim-s.inicio)/60000))+" min", CODIGO));
   if(s.convidado){
     d.pular(4);
     d.texto("Estudante convidado: participa das atividades para estudo de caso, ainda sem matrícula no Atendimento Educacional Especializado.",
@@ -4313,19 +4382,7 @@ function gerarPdf(s){
   d.texto("Relatório de atendimento",{tam:16,negrito:true,cor:TINTA,depois:10});
 
   /* ---------- identificação ---------- */
-  const meia=PDF.UTIL/2;
-  d.painel(()=>{
-    d.linhaTab(["ESTUDANTE","TURMA"],[meia,meia],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-    d.linhaTab([nomeBonito(s.estudante),s.turma],[meia,meia],{tam:11,negrito:true,cor:TINTA,padV:1});
-    d.pular(5);
-    d.linhaTab(["ORIENTADOR(A)","DATA","HORÁRIO","DURAÇÃO"],
-      [meia,meia*.40,meia*.34,meia*.26],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-    d.linhaTab([nomeBonito(s.orientador),dataBR(s.inicio),horaBR(s.inicio)+" às "+horaBR(s.fim),mmss(s.fim-s.inicio)],
-      [meia,meia*.40,meia*.34,meia*.26],{tam:9.5,cor:TINTA,padV:1});
-    d.pular(5);
-    d.linhaTab(["DOCUMENTO Nº"],[PDF.UTIL],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-    d.linhaTab([CODIGO],[PDF.UTIL],{tam:10.5,negrito:true,cor:MAR,padV:1});
-  },{fundo:CLARO,pad:9});
+  d.ficha(fichaAtendimento(s, Math.max(1, Math.round((s.fim-s.inicio)/60000))+" min", CODIGO));
   if(s.encerradaAntes){
     d.pular(3);
     d.texto("Atendimento encerrado antes dos dez minutos, com autorização do professor.",
@@ -4854,11 +4911,14 @@ window.vozAEE=vozAEE;
   $("#bElLimpar").onclick=async()=>{ const ok=await vozAEE.limparCache(); rec(ok? "Áudios guardados apagados." : "Não consegui apagar agora.",ok); };
 })();
 let fotoDe=-1;
-/* cartas no formato de baralho: primeiro nome e turma bem grandes, aniversário nos cantos (9 por folha A4) */
-const MESES_CURTO=["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+/* aniversariantes, para o mural: primeiro nome numa linha, a data logo abaixo e a turma
+   pequena num canto (9 cartas por folha A4, deitadas ao longo do lado maior) */
+const MESES_LONGO=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
 function dadosCarta(a){
   const m=/^\d{4}-(\d{2})-(\d{2})$/.exec(a.nasc||"");
-  return {nome:primeiroNome(a.nome), turma:turmaCurta(a.turma||""), dia:m? m[2] : "", mes:m? MESES_CURTO[+m[1]-1] : ""};
+  const dia=m? +m[2] : 0;
+  return {nome:primeiroNome(a.nome), turma:turmaCurta(a.turma||""),
+          data: m? (dia===1? "1º" : String(dia))+" de "+MESES_LONGO[+m[1]-1] : ""};
 }
 function primeiroNome(n){ const p=String(n||"").trim().split(/\s+/)[0]||""; return p.charAt(0).toUpperCase()+p.slice(1).toLowerCase(); }
 function pintarCartas(){
@@ -4866,9 +4926,10 @@ function pintarCartas(){
   const L=cfg.estudantes.map(dadosCarta);
   $("#cartasBloco").style.display = L.length? "" : "none";
   const folhas=[]; for(let k=0;k<L.length;k+=9) folhas.push(L.slice(k,k+9));
-  const canto=c=>c.dia? '<span class="cartaCanto"><b>'+c.dia+'</b>'+c.mes+'</span>' : '<span class="cartaCanto"></span>';
-  box.innerHTML=folhas.map(f=>'<div class="cartasFolha">'+f.map(c=>'<div class="carta">'+canto(c)+
-    '<div class="cartaMeio"><b style="--n:'+Math.max(5,c.nome.length)+'">'+escH(c.nome)+'</b><span>'+escH(c.turma)+'</span></div>'+canto(c).replace('cartaCanto','cartaCanto baixo')+'</div>').join("")+'</div>').join("");
+  box.innerHTML=folhas.map(f=>'<div class="cartasFolha">'+f.map(c=>'<div class="carta">'+
+    (c.turma? '<span class="cartaTurma">'+escH(c.turma)+'</span>' : '')+
+    '<div class="cartaMeio"><b style="--n:'+Math.max(5,c.nome.length)+'">'+escH(c.nome)+'</b>'+
+    (c.data? '<span>'+escH(c.data)+'</span>' : '')+'</div></div>').join("")+'</div>').join("");
 }
 function pdfCartas(){
   const d=PDF.criar(); d.semRodape();
@@ -4883,19 +4944,15 @@ function pdfCartas(){
     const k=n%9, col=k%3, lin=Math.floor(k/3), x=mg+col*(cw+gap), y=H-mg-(lin+1)*ch-lin*gap;
     d.cru(".35 .35 .35 RG 1.2 w "+rr(x,y,cw,ch,12));
     d.cru(".6 .6 .6 RG .5 w "+rr(x+7,y+7,cw-14,ch-14,8));
-    if(c.dia){
-      d.escrever(c.dia, x+16, y+ch-36, 20, true);
-      d.escrever(c.mes, x+16, y+ch-50, 9, true, [.3,.3,.3]);
-      d.escrever(c.dia, x+cw-16-d.medir(c.dia,20,true), y+30, 20, true);
-      d.escrever(c.mes, x+cw-16-d.medir(c.mes,9,true), y+18, 9, true, [.3,.3,.3]);
-    }
-    /* nome e turma deitados, ao longo do lado maior da carta */
-    const comp=ch-96;
-    const tn=Math.min(58, cw*.40, comp/Math.max(1,d.medir(c.nome,1,true)));
-    const tt=c.turma? Math.min(30, cw*.20, comp/Math.max(1,d.medir(c.turma,1,true))) : 0;
-    const vao=c.turma? 10 : 0, larg=tn*.72+vao+tt*.72, esq=x+(cw-larg)/2, bn=esq+tn*.72;
+    /* deitada: o alto da carta fica do lado esquerdo da folha; o texto lê de baixo para cima */
+    const comp=ch-70;
+    const tn=Math.min(56, cw*.38, comp/Math.max(1,d.medir(c.nome,1,true)));
+    const td=c.data? Math.min(24, Math.max(tn*.5, 17), comp/Math.max(1,d.medir(c.data,1,true))) : 0;
+    const vao=c.data? tn*.30 : 0, bloco=tn*.72+vao+td*.72, esq=x+(cw-bloco)/2, bn=esq+tn*.72;
     d.escreverDeitado(c.nome, bn, y+(ch-d.medir(c.nome,tn,true))/2, tn, true);
-    if(c.turma) d.escreverDeitado(c.turma, bn+vao+tt*.72, y+(ch-d.medir(c.turma,tt,true))/2, tt, true, [.25,.25,.25]);
+    if(c.data) d.escreverDeitado(c.data, bn+vao+td*.72, y+(ch-d.medir(c.data,td,true))/2, td, true, [.15,.15,.15]);
+    /* turma pequena, no canto de cima à esquerda da carta deitada */
+    if(c.turma) d.escreverDeitado(c.turma, x+18+11*.72, y+18, 11, true, [.35,.35,.35]);
   });
   return d.blob();
 }
@@ -4911,17 +4968,23 @@ function pintarCfg(){
     '<div class="itemLista"><b>'+t+'</b><button class="x" data-tipo="turma" data-i="'+i+'">✕</button></div>').join("");
   $("#turmaAluno").innerHTML = cfg.turmas.map(t=>'<option>'+t+'</option>').join("");
   $("#listaAlunosCfg").innerHTML = cfg.estudantes.length
-    ? cfg.estudantes.map((a,i)=>'<div class="itemLista">'+avatarEst(a,"mini")+'<div><b>'+escH(a.nome)+'</b><br><span>'+escH(a.turma||"")+
-      (a.sexo==="F"? ' · feminino' : a.sexo==="M"? ' · masculino' : '')+
-      (a.nasc? ' · nasceu em '+dataBRdia(a.nasc)+(idadeHoje(a.nasc)? ' ('+idadeHoje(a.nasc)+')' : '') : '')+
-      (a.convidado? ' · <b style="color:var(--roxo-fundo)">convidado</b>'+(a.motivo? ': '+escH(a.motivo) : '') : '')+
-      (!a.casa && (()=>{ try{ return AREA.leituraFraca(a); }catch(e){ return false; } })()? ' · <b class="sugCasa">treino em casa sugerido pela Ficha de Observação</b>' : '')+
-      '</span></div><div class="acoes"><button class="btn" data-foto="'+i+'">🖼 '+(a.foto? 'Trocar foto' : 'Foto')+'</button>'+
-      (a.foto? '<button class="btn" data-semfoto="'+i+'">Sem foto</button>' : '')+
-      '<button class="btn'+(a.casa?' casaOn':'')+'" data-casa="'+i+'">'+(a.casa? '🏠 '+escH(codigoDe(a)) : '🏠 Treino em casa')+'</button>'+
-      '<button class="btn" data-conv="'+i+'">'+
-      (a.convidado? 'Passar para o AEE' : 'Marcar como convidado')+'</button>'+
-      '<button class="x" data-tipo="aluno" data-i="'+i+'">✕</button></div></div>').join("")
+    ? cfg.estudantes.map((a,i)=>{
+      const meta=[a.turma||"", a.sexo==="F"? "feminino" : a.sexo==="M"? "masculino" : "",
+                  a.nasc? dataBRdia(a.nasc)+(idadeHoje(a.nasc)? " · "+idadeHoje(a.nasc) : "") : ""].filter(Boolean).join("  ·  ");
+      const sug=!a.casa && (()=>{ try{ return AREA.leituraFraca(a); }catch(e){ return false; } })();
+      return '<div class="estCard'+(a.convidado?' conv':'')+'">'+
+        '<button type="button" class="estFoto" data-foto="'+i+'" aria-label="'+(a.foto?'Trocar a foto':'Escolher uma foto')+'">'+avatarEst(a)+
+          '<span class="estCam">📷</span></button>'+
+        '<div class="estInfo"><b>'+escH(nomeBonito(a.nome))+'</b><span class="estMeta">'+escH(meta)+'</span>'+
+          (a.convidado && a.motivo? '<span class="estMeta">Convidado: '+escH(a.motivo)+'</span>' : '')+
+          (sug? '<span class="estMeta sugCasa">Treino em casa sugerido pela Observação Pedagógica</span>' : '')+'</div>'+
+        '<div class="estAcoes">'+
+          '<button type="button" class="estBt'+(a.casa?' on casa':'')+'" data-casa="'+i+'" aria-pressed="'+!!a.casa+'">🏠 '+(a.casa? 'Treino em casa · '+escH(codigoDe(a)) : 'Treino em casa')+'</button>'+
+          '<button type="button" class="estBt'+(a.convidado?' on roxo':'')+'" data-conv="'+i+'" aria-pressed="'+!!a.convidado+'">👤 Convidado</button>'+
+          (a.foto? '<button type="button" class="estBt" data-semfoto="'+i+'">Tirar a foto</button>' : '')+
+        '</div>'+
+        '<button type="button" class="x estX" data-tipo="aluno" data-i="'+i+'" aria-label="Apagar">✕</button></div>';
+    }).join("")
     : '<div class="vazio">Nenhum estudante cadastrado.</div>';
   $("#listaSessoes").innerHTML = sessoes.length
     ? sessoes.slice(0,25).map((s,i)=>'<div class="itemLista"><div><b>'+s.estudante+'</b><br><span>'+
@@ -4930,6 +4993,8 @@ function pintarCfg(){
     : '<div class="vazio">Nenhum atendimento guardado ainda.</div>';
   document.querySelectorAll("[data-tipo]").forEach(b=>b.onclick=()=>{
     const i=+b.dataset.i;
+    if(b.dataset.tipo==="aluno" && b.dataset.conf!=="1"){ b.dataset.conf="1"; b.textContent="?"; b.title="Toque de novo para apagar";
+      setTimeout(()=>{ b.dataset.conf=""; b.textContent="✕"; }, 3500); return; }
     if(b.dataset.tipo==="prof") cfg.professores.splice(i,1);
     if(b.dataset.tipo==="turma") cfg.turmas.splice(i,1);
     if(b.dataset.tipo==="aluno") cfg.estudantes.splice(i,1);
@@ -5053,7 +5118,8 @@ function pdfHorario(){
   d.orientacao(true);
   try{ cabecalhoInst(d, INST, {srm:true}); }catch(err){}
   d.texto("Horário semanal do Atendimento Educacional Especializado",{tam:13,negrito:true,depois:2});
-  if(profEscolhido) d.texto("Professor(a): "+nomeBonito(profEscolhido),{tam:9.5,depois:8}); else d.pular(6);
+  d.pular(4);
+  if(profEscolhido){ d.ficha([[ ["Professor(a) do AEE", nomeBonito(profEscolhido), 1] ]]); d.pular(2); } else d.pular(6);
   const UL=d.util, w0=70, wc=(UL-w0)/5, lg=[w0].concat(D.map(()=>wc));
   const oc={tam:9,negrito:true,padV:5,bordas:true,fundo:[.93,.93,.93],alinhas:["c","c","c","c","c","c"]};
   d.linhaTab(["Horário"].concat(D.map(x=>DIAS_SEM[x].replace("-feira","").replace(/^./,m=>m.toUpperCase()))), lg, oc);
@@ -5069,7 +5135,7 @@ function pdfHorario(){
   return d.blob();
 }
 $("#bCartasPdf").onclick=()=>{
-  try{ if(cfg.estudantes.length) baixar(pdfCartas(), "Cartas dos estudantes.pdf"); }catch(err){}
+  try{ if(cfg.estudantes.length) baixar(pdfCartas(), "Aniversariantes.pdf"); }catch(err){}
 };
 $("#bHoPdf").onclick=()=>{
   try{ baixar(pdfHorario(), "Horário semanal do AEE.pdf"); }
@@ -5080,20 +5146,25 @@ $("#bHoPdf").onclick=()=>{
 let instEditando=null, instLogoTmp=null;
 const CAMPOS_INST={instNome:"nome", instOrgao:"orgao", instCod:"codigos", instEnd:"endereco", instCid:"cidade", instCont:"contato"};
 function escH(t){ return String(t==null?"":t).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
-function lerFormInst(){ const o={}; for(const k in CAMPOS_INST) o[CAMPOS_INST[k]]=$("#"+k).value.replace(/\s+/g," ").trim(); o.logo=instLogoTmp; return o; }
+function lerFormInst(){ const o={}; for(const k in CAMPOS_INST) o[CAMPOS_INST[k]]=$("#"+k).value.replace(/\s+/g," ").trim(); o.logo=instLogoTmp;
+  o.mostrarCodigos=!!$('#instCodVer .chip.on[data-v="1"]'); return o; }
+/* o registro (INEP, CNPJ…) pode ficar guardado sem aparecer nos documentos */
+function marcarCodVer(v){ document.querySelectorAll("#instCodVer .chip").forEach(c=>c.classList.toggle("on", (c.dataset.v==="1")===!!v)); }
+document.querySelectorAll("#instCodVer .chip").forEach(c=>c.onclick=()=>{ marcarCodVer(c.dataset.v==="1"); previaInst(); });
 function previaInst(){
   const i=lerFormInst();
   const cont=contatosInst(i);
   $("#previaInst").innerHTML='<div class="pvCab">'+(i.logo&&i.logo.src? '<img src="'+i.logo.src+'" alt="">' : '')+'<div>'+
-    (i.orgao? '<small>'+escH(i.orgao.toUpperCase())+'</small>' : '')+'<b>'+escH(i.nome||"Nome da escola ou da instituição")+'</b>'+
-    (i.codigos? '<small>'+escH(i.codigos)+'</small>' : '')+
-    '<small>Sala de Recursos Multifuncionais · Atendimento Educacional Especializado</small></div></div>'+
+    (i.orgao? '<small>'+escH(i.orgao.toUpperCase())+'</small>' : '')+'<b>'+escH(i.nome? nomeNumaLinha(PDF.criar(), i.nome, PDF.UTIL-(i.logo&&i.logo.src? 264 : 0), 12.5).txt : "Nome da escola ou da instituição")+'</b>'+
+    (i.codigos && i.mostrarCodigos!==false? '<small>'+escH(i.codigos)+'</small>' : '')+
+    '</div></div>'+
     (cont? '<div class="pvRod">'+escH(cont)+'</div>' : '');
   $("#bInstSemLogo").style.display = i.logo? "" : "none";
 }
 function limparFormInst(){
   instEditando=null; instLogoTmp=null;
   for(const k in CAMPOS_INST) $("#"+k).value="";
+  marcarCodVer(true);
   $("#instTitForm").textContent="Nova instituição"; $("#bSalvarInst").textContent="＋ Cadastrar";
   $("#bCancelaInst").style.display="none"; $("#erroInst").classList.remove("on"); previaInst();
 }
@@ -5109,6 +5180,7 @@ function pintarInst(){
     const x=listaInst().find(y=>y.id===b.dataset.instEditar); if(!x) return;
     instEditando=x.id; instLogoTmp=x.logo||null;
     for(const k in CAMPOS_INST) $("#"+k).value=x[CAMPOS_INST[k]]||"";
+    marcarCodVer(x.mostrarCodigos!==false);
     $("#instTitForm").textContent="Editar instituição"; $("#bSalvarInst").textContent="✓ Salvar alterações";
     $("#bCancelaInst").style.display=""; previaInst();
     try{ $("#formInst").scrollIntoView({behavior:"smooth",block:"start"}); }catch(e){}
@@ -5153,19 +5225,26 @@ $("#bAddTurma").onclick=()=>{
   if(n && !cfg.turmas.includes(n)){ cfg.turmas.push(n); salvar(); }
   $("#novaTurma").value=""; pintarCfg();
 };
+function erroFoto(t){
+  const e=$("#erroFotoEst"); if(e){ e.textContent=t; e.classList.add("on"); setTimeout(()=>e.classList.remove("on"), 9000); }
+  try{ if(window.AndroidAEE && AndroidAEE.recado) AndroidAEE.recado(t); }catch(err){}
+}
 $("#fotoEstArq").onchange=e=>{
   const f=e.target.files && e.target.files[0]; e.target.value=""; const a=cfg.estudantes[fotoDe]; if(!f || !a) return;
+  $("#erroFotoEst").classList.remove("on");
   lerImagem(f, 900, .9, im=>{
     /* recorta o centro num quadrado pequeno: a foto fica leve na memória */
     const img=new Image(); img.onload=()=>{
       const L=160, c=document.createElement("canvas"); c.width=L; c.height=L;
       const s=Math.min(img.width,img.height), g=c.getContext("2d");
       g.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,L,L);
-      a.foto=c.toDataURL("image/jpeg",.82);
-      try{ salvar(); }catch(err){ delete a.foto; }
+      const antes=a.foto; a.foto=c.toDataURL("image/jpeg",.82);
+      if(!salvar()){ if(antes) a.foto=antes; else delete a.foto;
+        erroFoto("A memória do tablet está cheia e a foto não foi guardada. Faça a cópia de segurança e apague atendimentos antigos."); }
       pintarCfg(); pintarAlunos();
-    }; img.src=im.src;
-  });
+      try{ document.dispatchEvent(new Event("fotoEstudante")); }catch(err){}
+    }; img.onerror=()=>erroFoto("Não consegui abrir esta imagem. Tente outra foto."); img.src=im.src;
+  }, ()=>erroFoto("Não consegui abrir esta imagem. Tente uma foto em JPG ou PNG."));
 };
 $("#bAddAluno").onclick=()=>{
   const n=$("#novoAluno").value.trim(), t=$("#turmaAluno").value, sx=$("#sexoAluno").value, na=$("#nascAluno").value;
@@ -5246,7 +5325,7 @@ const FICHAS = {
     (os identificadores s{seção}c{campo} são posicionais). As partes 2 e 3 entram no fim;
     "ordem" e "partes" arrumam a leitura na tela e no PDF. */
  diag: {
-  nome: "Ficha de Observação Pedagógica",
+  nome: "Observação Pedagógica",
   titulo: "Ficha de Observação Pedagógica",
   arquivo: "Ficha de Observação Pedagógica",
   icone: "📝", cor: "--mar",
@@ -5388,9 +5467,9 @@ const FICHAS = {
 
  /* ─────────────── 2 · OBSERVAÇÃO ESCOLAR: SINAIS DE TEA ─────────────── */
  tea: {
-  nome: "Observação escolar: sinais de TEA",
+  nome: "Observação: TEA",
   titulo: "Ficha de observação escolar: investigação de possíveis sinais de TEA (com camuflagem social)",
-  arquivo: "Observação escolar - sinais de TEA",
+  arquivo: "Observação - sinais de TEA",
   icone: "📋", cor: "--roxo",
   desc: "Comunicação, interação, comportamentos e interesses, aspectos emocionais, autonomia e estratégias de camuflagem.",
   rotData: "Data da avaliação", rotTurma: "Turma regular",
@@ -5593,7 +5672,7 @@ const FICHAS = {
 
  /* ─────────────── 5 · PDI (relatório do período) ─────────────── */
  pdi: {
-  nome: "PDI e relatório do período",
+  nome: "Avanços PAEE",
   auto: true,
   titulo: "PDI: Plano de Desenvolvimento Individualizado",
   arquivo: "PDI",
@@ -5650,7 +5729,7 @@ const FICHAS = {
  rel: {
    /* o percurso (seção 6, acrescentada depois) sai logo após o desenvolvimento */
    ordem:[0,1,2,6,3,4,5],
-  nome: "Relatório pedagógico do AEE",
+  nome: "Relatórios AEE",
   auto: true,
   titulo: "Relatório Pedagógico do Atendimento Educacional Especializado",
   arquivo: "Relatório pedagógico do AEE",
@@ -6554,6 +6633,7 @@ const AREA = (()=>{
     });
   }
   $("#apBusca").addEventListener("input", pintarAlunosArea);
+  document.addEventListener("fotoEstudante", ()=>{ if(aluno){ try{ pintarDocs(); }catch(e){} } });
 
   function pintarDocs(){
     const cx=$("#apDocs");
@@ -6571,7 +6651,8 @@ const AREA = (()=>{
       (al.ciente? '<small>Você marcou que já está acompanhando. O destaque volta quando uma ficha com algum destes sinais for atualizada.</small>'
                 : '<small>'+esc(orientacaoDe(al.lista))+'</small>')+'</div>'+
       (al.ciente? '' : '<div class="b"><button class="apLink" data-ciente="1">Já estou acompanhando</button></div>')+'</div>' : '';
-    cx.innerHTML='<div class="caixa"><p class="apQuem">'+esc(nomeBonito(aluno.nome))+' <span>· '+esc(aluno.turma||"")+'</span></p>'+alHTML+sugHTML+
+    cx.innerHTML='<div class="caixa"><p class="apQuem"><button type="button" class="apFoto" id="bApFoto" aria-label="Foto do estudante">'+avatarEst(aluno)+'</button>'+
+      '<span class="apQuemTx"><b>'+esc(nomeBonito(aluno.nome))+'</b> <span>· '+esc(aluno.turma||"")+'</span></span></p>'+alHTML+sugHTML+
       '<div class="apDocs">'+ORDEM_FICHAS.map(t=>{
         const S=FICHAS[t], r=F[idDe(t, aluno)];
         const st = r ? '<span class="st rasc">Rascunho de '+dataBR(r.atualizado)+' às '+horaBR(r.atualizado)+'</span>'
@@ -6579,11 +6660,16 @@ const AREA = (()=>{
                  : feitas[t] ? '<span class="st feita">✓ Concluída em '+dataBR(feitas[t].em)+'</span>'
                  : '<span class="st">Nova ficha</span>';
         return '<button class="cartaoDoc" data-t="'+t+'" style="--c:var('+S.cor+')">'+
-          '<span class="topo"><span class="ic">'+S.icone+'</span><b>'+esc(S.nome)+'</b></span>'+
-          '<span class="corpo">'+esc(S.desc)+'</span>'+st+'</button>';
+          '<span class="topo"><span class="ic">'+S.icone+'</span><b>'+esc(S.nome)+'</b>'+
+          '<span class="q" role="button" aria-label="Explicação" data-q="'+esc(S.desc)+'">?</span></span>'+
+          '<span class="pe">'+st+(t==="termo"? '<span class="emBranco" role="button" data-branco="1" aria-label="Termo em branco">📄 Em branco</span>' : '')+'</span></button>';
       }).join("")+'</div>'+concluidasHTML(aluno)+'</div>';
-    cx.querySelectorAll(".cartaoDoc").forEach(b=>b.onclick=()=>abrirOuPerguntar(b.dataset.t, aluno));
+    cx.querySelectorAll(".cartaoDoc").forEach(b=>b.onclick=ev=>{
+      if(ev.target.closest && ev.target.closest("[data-branco]")){ baixarTermoBranco(); return; }
+      abrirOuPerguntar(b.dataset.t, aluno); });
     cx.querySelectorAll("[data-abrir]").forEach(b=>b.onclick=()=>abrirOuPerguntar(b.dataset.abrir, aluno));
+    /* tocar na foto do perfil escolhe ou troca a foto do estudante */
+    $("#bApFoto").onclick=()=>{ const i=cfg.estudantes.indexOf(aluno); if(i<0) return; fotoDe=i; $("#fotoEstArq").click(); };
     cx.querySelectorAll("[data-pdf]").forEach(b=>b.onclick=async()=>{
       const x=lerArq().find(y=>y.chave===b.dataset.pdf); if(!x) return;
       let blob; try{ blob=gerarFichaPdf(x); }catch(e){ recado("Não consegui montar o PDF agora."); return; }
@@ -6788,21 +6874,21 @@ const AREA = (()=>{
         return n >= SINAIS_TEA[t].minimo; });
       if(fontes.length){
         const nomes=fontes.map(t=>t==="diag"? "a Ficha de Observação Pedagógica" : "a entrevista familiar").join(" e ");
-        lista.push({tipo:"tea", tea:true, ocultavel:true, botao:"Abrir a ficha de sinais de TEA",
+        lista.push({tipo:"tea", tea:true, ocultavel:true, botao:"Abrir a Observação: TEA",
           texto:"<b>Sugestão:</b> "+nomes.charAt(0).toUpperCase()+nomes.slice(1)+" reuniu respostas sobre comunicação, interação "+
                 "social ou sensibilidade sensorial que merecem uma observação mais detalhada. Vale preencher a "+
-                "<b>Observação escolar: sinais de TEA</b>.",
+                "<b>Observação: TEA</b>.",
           nota:"É uma sugestão de observação, não um diagnóstico."});
       }
     }
     /* 2 · próximo passo */
-    const passos=[["diag","Comece pela <b>Ficha de Observação Pedagógica</b>."],
+    const passos=[["diag","Comece pela <b>Observação Pedagógica</b>."],
                   ["fam","Ainda falta a <b>entrevista familiar</b>."],
                   ["paee","Com a observação e a entrevista em mãos, já dá para elaborar o <b>PAEE</b>."],
-                  ["pdi","Falta o <b>PDI</b> deste estudante."]];
+                  ["pdi","Faltam os <b>Avanços PAEE</b> deste estudante."]];
     for(const [t,txt] of passos){
       if(feitas[t]) continue;
-      lista.push(rasc(t) ? {tipo:t, texto:"Há um rascunho da <b>"+esc(FICHAS[t].nome.toLowerCase())+"</b> esperando para ser concluído.", botao:"Continuar"}
+      lista.push(rasc(t) ? {tipo:t, texto:"Há um rascunho em <b>"+esc(FICHAS[t].nome)+"</b> esperando para ser concluído.", botao:"Continuar"}
                          : {tipo:t, texto:"<b>Próximo passo:</b> "+txt.replace(/^./, m=>m)});
       return lista;
     }
@@ -6858,8 +6944,8 @@ const AREA = (()=>{
   const CHAVES_COPIA=["aee_cfg","aee_sessoes","aee_fichas","aee_arquivo","aee_fichas_feitas","aee_sug_ocultas","aee_area_lembrar","aee_area_prof","aee_diario","aee_ocorrencias","aee_quadro","aee_pdt","aee_visitas","aee_oficios","aee_anotacoes"];
   function pintarCopia(){
     const ult=+localStorage.getItem(CH_COPIA)||0, mud=+localStorage.getItem(CH_MUDOU)||0;
-    $("#apUltima").innerHTML = ult ? "Última cópia de segurança: <b>"+dataBR(ult)+", às "+horaBR(ult)+"</b>."
-                                   : "Ainda não foi feita nenhuma cópia de segurança.";
+    $("#apUltima").innerHTML = ult ? "Última cópia: <b>"+dataBR(ult)+", às "+horaBR(ult)+"</b>."
+                                   : "Nenhuma cópia feita neste tablet.";
     const lem=$("#apLembrete"); if(lem) lem.classList.remove("on");
     try{ pintarAvisos(); }catch(e){}
   }
@@ -7172,7 +7258,7 @@ const AREA = (()=>{
     if(achou.length<R.minimo || feitas.tea || ocultas.tea || feitas.temTEA || lerFichas()[idDe("tea",est)] || temDiagnosticoTEA(ficha)){
       cx.classList.remove("on"); return; }
     cx.innerHTML='<span class="ic">💡</span><div class="t"><b>Sugestão:</b> algumas respostas desta ficha tratam de comunicação, '+
-      'interação social ou sensibilidade sensorial. Vale preencher também a <b>Observação escolar: sinais de TEA</b>.'+
+      'interação social ou sensibilidade sensorial. Vale preencher também a <b>Observação: TEA</b>.'+
       '<small>Itens que chamaram atenção: '+esc(achou.slice(0,6).join("; "))+(achou.length>6?"…":"")+'. '+
       'É uma sugestão de observação, não um diagnóstico.</small></div>'+
       '<div class="b"><button class="btn roxa" id="fAbrirTea">Abrir depois desta</button></div>';
@@ -7395,15 +7481,11 @@ const AREA = (()=>{
     d.selo("Documento nº "+COD);
     cabecalhoInst(d, INST);
     d.texto(S.titulo,{tam:16,negrito:true,cor:TINTA,depois:10});
-    const meia=U/2;
-    d.painel(()=>{
-      d.linhaTab(["ESTUDANTE",(S.rotTurma||"Turma").toUpperCase()],[meia*1.35,meia*.65],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(f.estudante),f.turma],[meia*1.35,meia*.65],{tam:11,negrito:true,cor:TINTA,padV:1});
-      d.pular(5);
-      d.linhaTab(["PROFESSOR(A) DO AEE",(S.rotData||"Data").toUpperCase(),"DOCUMENTO Nº"],[meia*1.0,meia*.35,meia*.65],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(f.prof)||"—", dataISOparaBR(f.data)||dataBR(Date.now()), COD],[meia*1.0,meia*.35,meia*.65],
-        {tam:9.5,cor:TINTA,padV:1,coresCel:[TINTA,TINTA,MAR]});
-    },{fundo:CLARO,pad:9});
+    d.ficha([
+      [ ["Estudante", nomeBonito(f.estudante), .6], [S.rotTurma||"Turma", f.turma, .4] ],
+      [ ["Professor(a) do AEE", nomeBonito(f.prof), .6], [S.rotData||"Data", dataISOparaBR(f.data)||dataBR(Date.now()), .4] ],
+      [ ["Documento nº", COD, 1] ]
+    ]);
     if(f.convidado){
       d.pular(4);
       d.texto("Estudante convidado: participa para estudo de caso, a partir de indicação dos professores, "+
@@ -7516,15 +7598,11 @@ const AREA = (()=>{
     d.texto("Tratamento de dados pessoais e uso de imagem no Atendimento Educacional Especializado",
             {tam:8.6,cor:CINZA,depois:10});
 
-    const meia=U/2;
-    d.painel(()=>{
-      d.linhaTab(["ESTUDANTE",(S.rotTurma||"Turma").toUpperCase()],[meia*1.35,meia*.65],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(f.estudante)||linha("",40), f.turma||linha("",14)],[meia*1.35,meia*.65],{tam:11,negrito:true,cor:TINTA,padV:1});
-      d.pular(5);
-      d.linhaTab(["PROFESSOR(A) DO AEE","DATA","DOCUMENTO Nº"],[meia*1.0,meia*.35,meia*.65],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(f.prof)||linha("",26), dataISOparaBR(f.data)||"___/___/______", COD],[meia*1.0,meia*.35,meia*.65],
-        {tam:9.5,cor:TINTA,padV:1,coresCel:[TINTA,TINTA,MAR]});
-    },{fundo:CLARO,pad:9});
+    d.ficha([
+      [ ["Estudante", nomeBonito(f.estudante)||linha("",34), .6], [S.rotTurma||"Turma", f.turma||linha("",14), .4] ],
+      [ ["Professor(a) do AEE", nomeBonito(f.prof)||linha("",22), .6], ["Data", dataISOparaBR(f.data)||"___/___/______", .4] ],
+      [ ["Documento nº", COD, 1] ]
+    ]);
 
     const vinc = (r.s0c1==="Outro vínculo" ? limpo(r.s0c1_q) : limpo(r.s0c1)).toLowerCase();
     d.pular(10);
@@ -7591,10 +7669,10 @@ const AREA = (()=>{
   function termoBranco(){
     return gerarTermoPdf({tipo:"termo", estudante:"", turma:"", prof:"", inst:(instAtual()||{}).id||"", data:"", r:{}});
   }
-  $("#apTermoBranco") && ($("#apTermoBranco").onclick=async()=>{
+  async function baixarTermoBranco(){
     let blob; try{ blob=termoBranco(); }catch(e){ recado("Não consegui montar o PDF agora."); return; }
     await enviarPdf(blob, "Termo de autorização - em branco.pdf", "Termo de autorização do AEE (em branco)", recado);
-  });
+  }
 
   /* o que a família autorizou, a partir do último termo concluído */
   function autorizacoes(est){
@@ -8157,15 +8235,11 @@ const AREA = (()=>{
     cabecalhoInst(d, INST);
     d.texto(titulo,{tam:15,negrito:true,cor:TINTA,depois:2});
     if(sub) d.texto(sub,{tam:8.6,cor:CINZA,depois:10});
-    const meia=U/2;
-    d.painel(()=>{
-      d.linhaTab(["ESTUDANTE","TURMA"],[meia*1.35,meia*.65],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(o.estudante)||"—", o.turma||"—"],[meia*1.35,meia*.65],{tam:11,negrito:true,cor:TINTA,padV:1});
-      d.pular(5);
-      d.linhaTab(["PROFESSOR(A) DO AEE","DATA","HORA"],[meia*1.2,meia*.45,meia*.35],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(o.prof)||"—", dataISOparaBR(o.data)||"—", o.hora||"—"],
-        [meia*1.2,meia*.45,meia*.35],{tam:9.5,cor:TINTA,padV:1});
-    },{fundo:CLARO,pad:9});
+    const dt=dataISOparaBR(o.data);
+    d.ficha([
+      [ ["Estudante", nomeBonito(o.estudante), .6], ["Turma", o.turma, .4] ],
+      [ ["Professor(a) do AEE", nomeBonito(o.prof), .6], ["Data e hora", dt? dt+(o.hora? " às "+o.hora : "") : "", .4] ]
+    ]);
   }
   function listaOuTraco(d, rot, itens){
     const {TINTA,CINZA}=COR;
@@ -9135,20 +9209,13 @@ const AREA = (()=>{
     d.texto("Levantamento com o professor diretor de turma",{tam:15,negrito:true,cor:TINTA,depois:2});
     d.texto("Registro de trabalho do Atendimento Educacional Especializado",{tam:8.6,cor:CINZA,depois:10});
     const meia=U/2, cad=lvEstudanteCadastrado(o.nome,o.turma), Gn=generoDoEstudante(o.nome,o.turma);
-    d.painel(()=>{
-      d.linhaTab(["ESTUDANTE","TURMA"],[meia*1.35,meia*.65],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(o.nome)||"—", o.turma||"—"],[meia*1.35,meia*.65],{tam:11,negrito:true,cor:TINTA,padV:1});
-      d.pular(5);
-      d.linhaTab(["PROFESSOR(A) DIRETOR(A) DE TURMA","PROFESSOR(A) DO AEE","DATA"],
-        [meia*.75,meia*.75,meia*.5],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(o.pdt)||"—", nomeBonito(o.prof)||"—", dataISOparaBR(o.data)||"—"],
-        [meia*.75,meia*.75,meia*.5],{tam:9.5,cor:TINTA,padV:1});
-      d.pular(5);
-      d.linhaTab(["SITUAÇÃO NO ATENDIMENTO EDUCACIONAL ESPECIALIZADO"],[U-18],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([cad? "Estudante já atendido na Sala de Recursos Multifuncionais"
-                     : "Estudante ainda não atendido na Sala de Recursos Multifuncionais"],
-        [U-18],{tam:9.5,cor:TINTA,padV:1});
-    },{fundo:CLARO,pad:9});
+    d.ficha([
+      [ ["Estudante", nomeBonito(o.nome), .6], ["Turma", o.turma, .4] ],
+      [ ["Professor(a) diretor(a) de turma", nomeBonito(o.pdt), .6], ["Data", dataISOparaBR(o.data), .4] ],
+      [ ["Professor(a) do AEE", nomeBonito(o.prof), 1] ],
+      [ ["Situação no AEE", cad? "Estudante já atendido na Sala de Recursos Multifuncionais"
+                               : "Estudante ainda não atendido na Sala de Recursos Multifuncionais", 1] ]
+    ]);
 
     LV_GRUPOS.forEach(G=>{
       const m=(o.g||{})[G.k]||[];
@@ -9546,21 +9613,13 @@ const AREA = (()=>{
     cabecalhoInst(d, INST);
     d.texto("Registro de visita "+(hosp? "hospitalar" : "domiciliar"),{tam:15,negrito:true,cor:TINTA,depois:2});
     d.texto("Atendimento educacional especializado realizado fora do espaço da escola",{tam:8.6,cor:CINZA,depois:10});
-    const meia=U/2;
-    d.painel(()=>{
-      d.linhaTab(["ESTUDANTE","TURMA"],[meia*1.35,meia*.65],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(v.estudante)||"—", v.turma||"—"],[meia*1.35,meia*.65],{tam:11,negrito:true,cor:TINTA,padV:1});
-      d.pular(5);
-      d.linhaTab(["PROFESSOR(A) DO AEE","DATA","INÍCIO","TÉRMINO"],
-        [meia*1.0,meia*.4,meia*.3,meia*.3],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-      d.linhaTab([nomeBonito(v.prof)||"—", dataISOparaBR(v.data)||"—", v.ini||"—", v.fim||"—"],
-        [meia*1.0,meia*.4,meia*.3,meia*.3],{tam:9.5,cor:TINTA,padV:1});
-      if(v.local){
-        d.pular(5);
-        d.linhaTab([hosp? "UNIDADE DE SAÚDE E SETOR" : "BAIRRO OU REFERÊNCIA"],[U-18],{tam:7.2,negrito:true,cor:CINZA,padV:1});
-        d.linhaTab([v.local],[U-18],{tam:9.5,cor:TINTA,padV:1});
-      }
-    },{fundo:CLARO,pad:9});
+    const hor = v.ini? v.ini+(v.fim? " às "+v.fim : "") : "";
+    d.ficha([
+      [ ["Estudante", nomeBonito(v.estudante), .6], ["Turma", v.turma, .4] ],
+      [ ["Professor(a) do AEE", nomeBonito(v.prof), .6], ["Data", dataISOparaBR(v.data), .4] ],
+      v.local ? [ [hosp? "Unidade de saúde e setor" : "Bairro ou referência", v.local, .6], ["Horário", hor, .4] ]
+              : [ ["Horário", hor, 1] ]
+    ]);
 
     const Gav=generoDoEstudante(v.estudante, v.turma);
     if((v.comQuem||[]).length){
@@ -10558,7 +10617,7 @@ retomarSessao();
 /* ---------- versão e atualização ----------
    O aplicativo se atualiza sozinho: basta o tablet pegar internet uma vez.
    Nada precisa ser instalado de novo. O botão em Ajustes força a procura. */
-const VERSAO = "63";
+const VERSAO = "65";
 let recarregandoVersao = false;
 
 function marcarVersao(){
